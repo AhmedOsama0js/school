@@ -15,8 +15,6 @@ fetch("./Data.json")
     fourth = data.fourth;
     fifth = data.fifth;
     Sixth = data.Sixth;
-    console.log(data);
-
     btnSearch.addEventListener("click", () => {
       const studentId = numGelos.value;
       if (select.value == 1) {

@@ -9,13 +9,12 @@ let TABLE = document.querySelector(".table");
 
 let student;
 
-fetch("./DATA.json")
+fetch("./Data.json")
   .then((res) => res.json())
   .then((data) => {
     fourth = data.fourth;
     fifth = data.fifth;
     Sixth = data.Sixth;
-     
     console.log(data);
 
     btnSearch.addEventListener("click", () => {

@@ -75,7 +75,7 @@ const deleteData = (information) => {
   Table.innerHTML = "";
   BODY.innerHTML = "";
   final.innerHTML = "";
-  // chartActive.style.display = "none";
+
 };
 
 // print-data-in-page
@@ -134,12 +134,6 @@ const printDATA = (studentData) => {
       <td>${studentData.Tokatsu_activities}</td>
       </tr>
       `;
-  // final.innerHTML = `
-  //       <tr>
-  //     <td><h3>المجموع النهائي</h3></td>
-  //     <td><h3>${studentData.total_score_level}</h3></td>
-  //     </tr>
-  //         `;
 };
 
 function animation() {

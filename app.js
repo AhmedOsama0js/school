@@ -110,7 +110,7 @@ const printDATA = (studentData) => {
   Table.innerHTML = `
     <tr>
     <th scope="col">المادة</th>
-    <th scope="col">التقدير</th>
+    <th scope="col">الدرجات</th>
     </tr>
           `;
   BODY.innerHTML = `

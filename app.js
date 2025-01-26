@@ -5,11 +5,11 @@ let numGelos = document.querySelector(".num-gelos");
 let btnSearch = document.querySelector("#btn-search");
 let select = document.querySelector(".form-select");
 let TABLE = document.querySelector(".table");
-let chartDiv = document.querySelector(".chart");
-let chartActive = document.querySelector(".char-active");
+// let chartDiv = document.querySelector(".chart");
+// let chartActive = document.querySelector(".char-active");
 
 let arr;
-let chart;
+// let chart;
 let student;
 
 fetch("./Data2025.json")
@@ -49,47 +49,6 @@ const handleStudentData = (data, id) => {
   const studentData = data.find((student) => student.Student_ID == id);
   if (studentData) {
     printDATA(studentData);
-    if (+student === 1) {
-      let subject = [
-        "متعدد التخصصات",
-        "الدين",
-        "انجليزي ",
-        "الرياضيات",
-        "العربي",
-      ];
-      let number = [
-        studentData.Multidisciplinary,
-        studentData.Religious_Education,
-        studentData.english,
-        studentData.mathematics,
-        studentData.Arabic,
-      ];
-      arr = [100, 100, 100, 100, 100];
-      printChart(studentData, arr, subject, number);
-    } else {
-      let subject = [
-        "تكنولوجيا المعلومات",
-        "مهارات مهنية",
-        "العلوم",
-        "الدراسات",
-        "الدين",
-        "انجليزي ",
-        "الرياضيات",
-        "العربي",
-      ];
-      let number = [
-        studentData.technology,
-        studentData.Professional_skills,
-        studentData.Sciences,
-        studentData.Social_Studies,
-        studentData.Religious_Education,
-        studentData.english,
-        studentData.mathematics,
-        studentData.Arabic,
-      ];
-      arr = [100, 100, 100, 100, 100, 100, 100, 100];
-      printChart(studentData, arr, subject, number);
-    }
   } else if (id === "") {
     deleteData("ادخل رقم جلوس");
   } else {
@@ -182,41 +141,41 @@ const printDATA = (studentData) => {
 
 // print-chart-in-page
 
-const printChart = (studentData, arr, subject, number) => {
-  deg = number;
-  let visitor = arr;
-  let year = subject;
-  var options = {
-    chart: {
-      type: "area",
-      height: "auto",
-      width: "100%",
-    },
-    series: [
-      {
-        type: "area",
-        name: " درجة الطالب",
-        data: [...deg],
-      },
-      {
-        type: "area",
-        name: "الدرجة النهائية للمواد",
-        data: [...visitor],
-      },
-    ],
-    xaxis: {
-      categories: year,
-    },
-    colors: ["#198754", "#0d6efd"],
-  };
+// const printChart = (studentData, arr, subject, number) => {
+//   deg = number;
+//   let visitor = arr;
+//   let year = subject;
+//   var options = {
+//     chart: {
+//       type: "area",
+//       height: "auto",
+//       width: "100%",
+//     },
+//     series: [
+//       {
+//         type: "area",
+//         name: " درجة الطالب",
+//         data: [...deg],
+//       },
+//       {
+//         type: "area",
+//         name: "الدرجة النهائية للمواد",
+//         data: [...visitor],
+//       },
+//     ],
+//     xaxis: {
+//       categories: year,
+//     },
+//     colors: ["#198754", "#0d6efd"],
+//   };
 
-  if (chart) {
-    chart.updateSeries([{ data: deg }, { data: visitor }]);
-  } else {
-    chart = new ApexCharts(chartDiv, options);
-    chart.render();
-  }
-};
+//   if (chart) {
+//     chart.updateSeries([{ data: deg }, { data: visitor }]);
+//   } else {
+//     chart = new ApexCharts(chartDiv, options);
+//     chart.render();
+//   }
+// };
 
 function animation() {
   TABLE.style.animation = "tableUpdateAnimation 0.7s ease-in-out";

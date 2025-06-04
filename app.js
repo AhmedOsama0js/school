@@ -1,21 +1,20 @@
-let NAME = document.querySelector("#Name");
-let BODY = document.querySelector("#Body-natega");
-let Table = document.querySelector("#Table-nat");
-let numGelos = document.querySelector(".num-gelos");
-let btnSearch = document.querySelector("#btn-search");
-let select = document.querySelector(".form-select");
-let TABLE = document.querySelector(".table");
-// let chartDiv = document.querySelector(".chart");
-// let chartActive = document.querySelector(".char-active");
-
+const NAME = document.querySelector("#Name");
+const BODY = document.querySelector("#Body-natega");
+const Table = document.querySelector("#Table-nat");
+const numGelos = document.querySelector(".num-gelos");
+const btnSearch = document.querySelector("#btn-search");
+const select = document.querySelector(".form-select");
+const TABLE = document.querySelector(".table");
+const inputLabel = document.querySelector("#inputLabel");
+const gelosInput = document.querySelector("#gelosInput");
 let arr;
-// let chart;
+
 let student;
 
-fetch("./Data2025.json")
+fetch("./Data2026.json")
   .then((res) => res.json())
   .then((data) => {
-    const { third, fourth, fifth, Sixth } = data; // تفكيك البيانات لمتغيرات
+    const { first, second, third, fourth, fifth, Sixth } = data;
 
     btnSearch.addEventListener("click", () => {
       const studentId = numGelos.value;
@@ -24,15 +23,21 @@ fetch("./Data2025.json")
       // تحديد بيانات الصف بناءً على الاختيار
       switch (select.value) {
         case "1":
-          selectedGradeData = third;
+          selectedGradeData = first;
           break;
         case "2":
-          selectedGradeData = fourth;
+          selectedGradeData = second;
           break;
         case "3":
-          selectedGradeData = fifth;
+          selectedGradeData = third;
           break;
         case "4":
+          selectedGradeData = fourth;
+          break;
+        case "5":
+          selectedGradeData = fifth;
+          break;
+        case "6":
           selectedGradeData = Sixth;
           break;
         default:
@@ -45,14 +50,38 @@ fetch("./Data2025.json")
     });
   });
 
+select.addEventListener("change", () => {
+  const selectedValue = select.value;
+  const isIdBased = selectedValue === "1" || selectedValue === "2";
+
+  const labelText = isIdBased ? "الرقم القومي" : "رقم الجلوس";
+  const placeholderText = isIdBased ? "الرقم القومي" : "ادخل رقم الجلوس";
+
+  inputLabel.textContent = labelText;
+  gelosInput.placeholder = placeholderText;
+});
+
 const handleStudentData = (data, id) => {
-  const studentData = data.find((student) => student.Student_ID == id);
+  const isIdBased = student === "1" || student === "2";
+  const label = isIdBased
+    ? " اول 3 ارقام في الرقم القومي من جهة اليمين"
+    : "رقم الجلوس";
+
+  const studentData = data.find((student) => {
+    if (isIdBased) {
+      const nationalIdLast3 = `${student.Student_ID}`?.slice(-3);
+      return nationalIdLast3 === id;
+    } else {
+      return student.Student_ID == id;
+    }
+  });
+
   if (studentData) {
     printDATA(studentData);
   } else if (id === "") {
-    deleteData("ادخل رقم جلوس");
+    deleteData(`ادخل ${label}`);
   } else {
-    deleteData("رقم الجلوس غير متوفر في الصف المحدد");
+    deleteData(`${label} غير متوفر في الصف المحدد`);
   }
 };
 
@@ -90,14 +119,14 @@ const printDATA = (studentData) => {
     <td>${studentData.Religious_Education}</td>
     </tr>
     ${
-      +student === 1
+      +student === 1 || +student === 2 || +student === 3
         ? `  <tr>
     <td> متعدد التخصصات</td>
     <td>${studentData.Multidisciplinary}</td>
     </tr>
     <tr>
     <td> التربية البدنية والصحيه</td>
-    <td>${studentData.Health_education}</td>
+    <td>${studentData.physical_education}</td>
     </tr>`
         : ` <tr>
     <td> الدراسات</td>
@@ -138,44 +167,6 @@ const printDATA = (studentData) => {
     </tr>
       `;
 };
-
-// print-chart-in-page
-
-// const printChart = (studentData, arr, subject, number) => {
-//   deg = number;
-//   let visitor = arr;
-//   let year = subject;
-//   var options = {
-//     chart: {
-//       type: "area",
-//       height: "auto",
-//       width: "100%",
-//     },
-//     series: [
-//       {
-//         type: "area",
-//         name: " درجة الطالب",
-//         data: [...deg],
-//       },
-//       {
-//         type: "area",
-//         name: "الدرجة النهائية للمواد",
-//         data: [...visitor],
-//       },
-//     ],
-//     xaxis: {
-//       categories: year,
-//     },
-//     colors: ["#198754", "#0d6efd"],
-//   };
-
-//   if (chart) {
-//     chart.updateSeries([{ data: deg }, { data: visitor }]);
-//   } else {
-//     chart = new ApexCharts(chartDiv, options);
-//     chart.render();
-//   }
-// };
 
 function animation() {
   TABLE.style.animation = "tableUpdateAnimation 0.7s ease-in-out";

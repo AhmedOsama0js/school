@@ -1,74 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta property="og:title" content="نتيجة مدرسة بنك سينا">
-  <meta property="og:description" content="تحقق من نتيجة مدرسة بنك سينا">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Meta Tags -->
+  <title>نتيجتي - مدرسة بنك سينا</title>
+  <meta name="description" content="البوابة الرسمية للاستعلام عن نتائج مدرسة بنك سينا لعام 2024/2025. استعلم عن نتيجتك برقم الجلوس أو الرقم القومي.">
+  <meta name="keywords" content="مدرسة بنك سينا, نتيجة, نتائج, تعليم, سيناء, مدرسة, نتيجة مدرسة بنك سينا">
+  <meta name="author" content="Ahmed Osama">
+  <meta name="theme-color" content="#f0f9ff">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="نتيجتي - مدرسة بنك سينا">
+  <meta property="og:description" content="تحقق من نتيجتك في مدرسة بنك سينا لعام 2024/2025 بطريقة سهلة وممتعة!">
   <meta property="og:image" content="https://github.com/AhmedOsama0js/school/assets/135539823/e05ad591-e7ed-4275-8d18-47217675603c">
   <meta property="og:url" content="https://ahmedosama0js.github.io/school/">
-  <!-- font-awesome css (cdn) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- bootstrap css (cdn) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
-  <!-- main style sheet -->
-  <link rel="stylesheet" href="./style.css">
- <link rel="icon" href="./img/img-removebg-preview.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
 
-  <title>نتيجة مدرسة بنك سينا</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons & Animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="icon" href="./img/img-removebg-preview.png">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            tajawal: ['Tajawal', 'sans-serif'],
+          },
+          colors: {
+            school: {
+              light: '#f0f9ff',
+              primary: '#0ea5e9',
+              secondary: '#f59e0b',
+              accent: '#ec4899',
+              success: '#10b981',
+              card: '#ffffff'
+            }
+          },
+          borderRadius: {
+            '4xl': '2rem',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f0f9ff;
+      background-image: radial-gradient(#bae6fd 1px, transparent 1px);
+      background-size: 30px 30px;
+      min-height: 100vh;
+    }
+    .card-shadow {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+      border: 4px solid #ffffff;
+    }
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    /* Simple Table Styling */
+    th {
+      padding: 1.25rem 1rem;
+      background-color: #f8fafc;
+      color: #64748b;
+      font-weight: 800;
+      text-align: center;
+    }
+    td {
+      padding: 1rem;
+      color: #334155;
+      font-weight: 500;
+      text-align: center;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    /* Custom for school appearance */
+    .btn-school {
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+      box-shadow: 0 4px 0px #0369a1;
+    }
+    .btn-school:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0px #0369a1;
+    }
+    
+    @keyframes tableUpdateAnimation {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 
-  <body >
-    <div class="container p-3 mb-3">
-      <div class="header d-flex align-item-center justify-content-between w-100">
-        <h3>مدرسة بنك سيناء</h3>
-        <h5 class="fw-bold">نتيجه نهاية العام 2024/2025</h5>
-        <img src="./img/img-removebg-preview.png" alt="icon">
+<body class="text-slate-800 py-10 px-4">
+  <!-- Decorative Elements -->
+  <div class="fixed top-10 left-10 text-sky-200 -z-10 floating" style="font-size: 80px;"><i class="fas fa-pencil-alt"></i></div>
+  <div class="fixed bottom-10 right-10 text-amber-100 -z-10 floating" style="font-size: 100px; animation-delay: 1s;"><i class="fas fa-graduation-cap"></i></div>
+  <div class="fixed top-1/2 right-10 text-pink-100 -z-10 floating" style="font-size: 60px; animation-delay: 0.5s;"><i class="fas fa-star"></i></div>
+
+  <div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <header class="bg-white rounded-4xl p-8 mb-8 text-center card-shadow animate__animated animate__bounceIn">
+      <div class="flex flex-col items-center gap-4">
+        <div class="bg-sky-50 p-4 rounded-full">
+           <img src="./img/img-removebg-preview.png" alt="Logo" class="w-24 h-24 object-contain drop-shadow-md">
+        </div>
+        <div>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-sky-600 mb-2">مدرسة بنك سيناء</h1>
+          <p class="text-amber-500 font-bold text-lg">بوابة نتائج الطلاب المبدعين 2024/2025</p>
+        </div>
       </div>
-    </div>
-    <div class="container">
-      <div id="select" class="central pt-4">
-      <select class="form-select" aria-label="Default select example">
-      <option disabled selected>اختار الصف</option>
-      <option select value="1">  الصف الاول</option>
-      <option select value="2">  الصف الثاني</option>
-      <option select value="3">  الصف الثالث</option>
-      <option value="4">  الصف الرابع</option>
-      <option value="5"> الصف الخامس </option>
-      <option value="6"> الصف السادس </option>
-</select>
-<div class="input-group mb-3 pt-4">
-<span class="input-group-text "id="inputLabel">رقم الجلوس</span>
-<input   id="gelosInput" type="number" placeholder="ادخل رقم الجلوس" class="form-control num-gelos" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-<button id="btn-search" type="button" class="btn btn-secondary">بحث</button>
-</div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="bg-white rounded-4xl p-8 card-shadow animate__animated animate__fadeInUp">
+      <div class="space-y-8">
+        <!-- Grade Selection -->
+        <div class="relative">
+          <label class="block text-lg font-bold text-slate-600 mb-3 flex items-center gap-2">
+            <span class="bg-sky-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+            اختر صفك الدراسي
+          </label>
+          <div class="relative">
+            <select class="form-select w-full bg-slate-50 border-2 border-slate-100 text-slate-700 rounded-2xl px-6 py-4 focus:border-sky-500 outline-none transition-all appearance-none text-lg font-medium cursor-pointer">
+              <option disabled selected>اختار الصف</option>
+              <option value="1">الصف الأول الابتدائي</option>
+              <option value="2">الصف الثاني الابتدائي</option>
+              <option value="3">الصف الثالث الابتدائي</option>
+              <option value="4">الصف الرابع الابتدائي</option>
+              <option value="5">الصف الخامس الابتدائي</option>
+              <option value="6">الصف السادس الابتدائي</option>
+            </select>
+            <div class="absolute left-6 top-1/2 -translate-y-1/2 text-sky-500 pointer-events-none">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- ID Input -->
+        <div>
+          <label id="inputLabel" class="block text-lg font-bold text-slate-600 mb-3 flex items-center gap-2">
+            <span class="bg-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+            رقم الجلوس الخاص بك
+          </label>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <input id="gelosInput" type="number" placeholder="ادخل رقم الجلوس هنا..." 
+              class="num-gelos flex-grow bg-slate-50 border-2 border-slate-100 text-slate-700 rounded-2xl px-6 py-4 focus:border-amber-500 outline-none transition-all text-lg font-medium">
+            <button id="btn-search" class="btn-school text-white font-extrabold py-4 px-10 rounded-2xl transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-lg">
+              <i class="fas fa-search"></i>
+              <span>عرض النتيجة</span>
+            </button>
+          </div>
+        </div>
       </div>
-      <h3  id="Name"class="py-3 text-pramiry text-center"></h3>
-      <div class="box-data row" >
-      <div class="box-table col-sm-12 ">
-<table class="table table-striped table-bordered rounded border-primary">
-  <thead class="text-center" id="Table-nat">
-  </thead>
-  <tbody class="text-center" id="Body-natega">
-  </tbody>
-    <!-- <tfoot class="text-center" id="footer-nat" >
-  </tfoot> -->
-</table>
+
+      <!-- Result Display -->
+      <div class="mt-12">
+        <div id="Name" class="text-2xl md:text-3xl font-extrabold text-center text-pink-500 mb-8 empty:hidden"></div>
+        
+        <div class="overflow-hidden rounded-3xl border-2 border-slate-100 box-data">
+          <table class="table w-full">
+            <thead id="Table-nat">
+              <!-- JS Injected header -->
+            </thead>
+            <tbody id="Body-natega" class="bg-white">
+              <!-- JS Injected data -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-10 text-center animate__animated animate__fadeIn">
+      <p class="text-slate-400 text-sm font-medium">
+        صنع بحب بواسطة: 
+        <a rel="noopener" href="https://www.facebook.com/anahmada.osama/" target="_blank" class="text-sky-500 hover:text-sky-600 transition-colors">Ahmed Osama</a>
+      </p>
+    </footer>
   </div>
-   <!-- <div class="box-chart">
-    <div class="char-active w-100">
-      <div class="chart-id chart"></div>
-    </div>
-  </div> -->
-  </div>
-  </div>
-      <div class="container mt-3">
-      <div class="header d-flex align-item-center justify-content-center w-100">
-        <span style="font-size: 18px;">code & design by: <a rel="noopener" href="https://ahmedosama.dengatech.com/" target="_blank">Ahmed Osama</a></span>
-    </div>
-      <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
-  <!-- bootstrap js (cdn) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+
   <script src="./app.js"></script>
 </body>
 </html>

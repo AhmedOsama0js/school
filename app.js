@@ -11,22 +11,22 @@ let arr;
 
 let student;
 
-fetch("./Data2026.json")
+fetch("./sinai.json")
   .then((res) => res.json())
   .then((data) => {
-    const { first, second, third, fourth, fifth, Sixth } = data;
+    const { firest, sconed, third, fourth, fifth, Sixth } = data;
 
     btnSearch.addEventListener("click", () => {
-      const studentId = numGelos.value;
+      const studentId = numGelos.value.trim();
       let selectedGradeData;
 
       // تحديد بيانات الصف بناءً على الاختيار
       switch (select.value) {
         case "1":
-          selectedGradeData = first;
+          selectedGradeData = firest;
           break;
         case "2":
-          selectedGradeData = second;
+          selectedGradeData = sconed;
           break;
         case "3":
           selectedGradeData = third;
@@ -54,7 +54,9 @@ select.addEventListener("change", () => {
   const selectedValue = select.value;
   const isIdBased = selectedValue === "1" || selectedValue === "2";
 
-  const labelText = isIdBased ? "الرقم القومي" : "رقم الجلوس";
+  const labelText = isIdBased
+    ? " اول 4 ارقام في الرقم القومي من جهة اليمين"
+    : "رقم الجلوس";
   const placeholderText = isIdBased ? "الرقم القومي" : "ادخل رقم الجلوس";
 
   inputLabel.textContent = labelText;
@@ -64,15 +66,14 @@ select.addEventListener("change", () => {
 const handleStudentData = (data, id) => {
   const isIdBased = student === "1" || student === "2";
   const label = isIdBased
-    ? " اول 3 ارقام في الرقم القومي من جهة اليمين"
+    ? " اول 4 ارقام في الرقم القومي من جهة اليمين"
     : "رقم الجلوس";
 
-  const studentData = data.find((student) => {
+  const studentData = data.find((item) => {
     if (isIdBased) {
-      const nationalIdLast3 = `${student.Student_ID}`?.slice(-3);
-      return nationalIdLast3 === id;
+      return `${item.Student_ID}`.endsWith(id) && id.length >= 1;
     } else {
-      return student.Student_ID == id;
+      return item.Student_ID == id;
     }
   });
 
@@ -137,8 +138,8 @@ const printDATA = (studentData) => {
     <td>${studentData.Sciences}</td>
     </tr>
     <tr>
-    <td> مهارات مهنية </td>
-    <td>${studentData.Professional_skills}</td>
+    <td> مهارات   و موسيقة </td>
+    <td>${studentData.Music_Professional_skills}</td>
     </tr>
     <tr>
     <td> تكنولوجيا المعلومات</td>
@@ -151,16 +152,8 @@ const printDATA = (studentData) => {
     <tr>
     <td>  التربية الفنية  </td>
     <td>${studentData.art}</td>
-    </tr>
-    <tr>
-    <td> التربية الموسيقية </td>
-    <td>${studentData.Music}</td>
     </tr>`
     }
-    <tr>
-    <td> القيم واحترام الآخر </td>
-    <td>${studentData.Values_and_respect}</td>
-    </tr>
     <tr>
     <td> نشطة التوكاتسو</td>
     <td>${studentData.Tokatsu_activities}</td>

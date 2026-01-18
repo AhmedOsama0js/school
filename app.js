@@ -93,6 +93,17 @@ const deleteData = (information) => {
   BODY.innerHTML = "";
 };
 
+const getColorClass = (value) => {
+  if (!value) return "";
+  const normalizedValue = value.trim();
+  if (normalizedValue.includes("يفوق التوقعات")) return "text-sky-600 font-extrabold";
+  if (normalizedValue.includes("يلبي التوقعات احيانا")) return "text-amber-500 font-extrabold";
+  if (normalizedValue.includes("يلبي التوقعات")) return "text-green-600 font-extrabold";
+  if (normalizedValue.includes("اقل من المتوقع")) return "text-red-500 font-extrabold";
+  if (normalizedValue.includes("اجتاز")) return "text-green-600 font-extrabold";
+  return "";
+};
+
 // print-data-in-page
 const printDATA = (studentData) => {
   NAME.innerHTML = studentData.name;
@@ -105,58 +116,58 @@ const printDATA = (studentData) => {
   BODY.innerHTML = `
     <tr>
     <td>العربي </td>
-    <td >${studentData.Arabic}</td>
+    <td class="${getColorClass(studentData.Arabic)}">${studentData.Arabic}</td>
     </tr>
     <tr>
     <td> الرياضيات </td>
-    <td>${studentData.mathematics}</td>
+    <td class="${getColorClass(studentData.mathematics)}">${studentData.mathematics}</td>
     </tr>
     <tr>
     <td> الانجليزي</td>
-    <td>${studentData.english}</td>
+    <td class="${getColorClass(studentData.english)}">${studentData.english}</td>
     </tr>
     <tr>
     <td> الدين</td>
-    <td>${studentData.Religious_Education}</td>
+    <td class="${getColorClass(studentData.Religious_Education)}">${studentData.Religious_Education}</td>
     </tr>
     ${
       +student === 1 || +student === 2 || +student === 3
         ? `  <tr>
     <td> متعدد التخصصات</td>
-    <td>${studentData.Multidisciplinary}</td>
+    <td class="${getColorClass(studentData.Multidisciplinary)}">${studentData.Multidisciplinary}</td>
     </tr>
     <tr>
     <td> التربية البدنية والصحيه</td>
-    <td>${studentData.physical_education}</td>
+    <td class="${getColorClass(studentData.physical_education)}">${studentData.physical_education}</td>
     </tr>`
         : ` <tr>
     <td> الدراسات</td>
-    <td>${studentData.Social_Studies}</td>
+    <td class="${getColorClass(studentData.Social_Studies)}">${studentData.Social_Studies}</td>
     </tr>
     <tr>
     <td> العلوم</td>
-    <td>${studentData.Sciences}</td>
+    <td class="${getColorClass(studentData.Sciences)}">${studentData.Sciences}</td>
     </tr>
     <tr>
-    <td> مهارات   و موسيقة </td>
-    <td>${studentData.Music_Professional_skills}</td>
+    <td> مهارات و موسيقي </td>
+    <td class="${getColorClass(studentData.Music_Professional_skills)}">${studentData.Music_Professional_skills}</td>
     </tr>
     <tr>
     <td> تكنولوجيا المعلومات</td>
-    <td>${studentData.technology}</td>
+    <td class="${getColorClass(studentData.technology)}">${studentData.technology}</td>
     </tr>
     <tr>
     <td> التربية البدنية </td>
-    <td>${studentData.physical_education}</td>
+    <td class="${getColorClass(studentData.physical_education)}">${studentData.physical_education}</td>
     </tr>
     <tr>
     <td>  التربية الفنية  </td>
-    <td>${studentData.art}</td>
+    <td class="${getColorClass(studentData.art)}">${studentData.art}</td>
     </tr>`
     }
     <tr>
     <td> نشطة التوكاتسو</td>
-    <td>${studentData.Tokatsu_activities}</td>
+    <td class="${getColorClass(studentData.Tokatsu_activities)}">${studentData.Tokatsu_activities}</td>
     </tr>
       `;
 };
